@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
@@ -11,23 +12,39 @@ html {
   box-sizing: border-box;
 }
 
+/* ===== COLOUR PALETTE =====
+   --bg:        #0b0c2a  deep space navy
+   --surface:   #13143d  slightly lighter surface
+   --accent1:   #b84dff  neon purple
+   --accent2:   #00e5ff  neon cyan
+   --text:      #e8d5ff  soft lavender white
+   --muted:     #6b6fa8  muted indigo
+   --btn-bg:    #6a00cc  deep violet
+   --btn-hover: #8400ff  bright violet
+   --num-bg:    #13143d  dark card
+   --border:    #b84dff
+=============================== */
+
+/* ===== BASE ===== */
 body {
   font-family: "Press Start 2P", sans-serif;
-  color: #eee;
-  background-color: #222;
+  color: #e8d5ff;
+  background-color: #0b0c2a;
   /* background-color: #60b347; */
+  min-height: 100vh;
 }
 
-/* LAYOUT */
+/* ===== LAYOUT ===== */
 header {
   position: relative;
   height: 35vh;
-  border-bottom: 7px solid #eee;
+  border-bottom: 4px solid #b84dff;
+  box-shadow: 0 4px 24px rgba(184, 77, 255, 0.25);
 }
 
 main {
   height: 65vh;
-  color: #eee;
+  color: #e8d5ff;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -45,7 +62,7 @@ main {
   font-size: 2rem;
 }
 
-/* ELEMENTS STYLE */
+/* ===== ELEMENTS ===== */
 h1 {
   font-size: 4rem;
   text-align: center;
@@ -54,11 +71,14 @@ h1 {
   top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #00e5ff;
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.55);
+  letter-spacing: 0.05em;
 }
 
 .number {
-  background: #eee;
-  color: #333;
+  background: #13143d;
+  color: #00e5ff;
   font-size: 6rem;
   width: 15rem;
   padding: 3rem 0rem;
@@ -67,6 +87,9 @@ h1 {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
+  border: 3px solid #b84dff;
+  box-shadow: 0 0 24px rgba(184, 77, 255, 0.4), inset 0 0 12px rgba(0, 229, 255, 0.08);
+  transition: width 0.4s ease, box-shadow 0.3s ease;
 }
 
 .between {
@@ -74,6 +97,7 @@ h1 {
   position: absolute;
   top: 2rem;
   right: 2rem;
+  color: #6b6fa8;
 }
 
 .again {
@@ -83,37 +107,229 @@ h1 {
 }
 
 .guess {
-  background: none;
-  border: 4px solid #eee;
+  background: #13143d;
+  border: 3px solid #b84dff;
   font-family: inherit;
-  color: inherit;
+  color: #00e5ff;
   font-size: 5rem;
   padding: 2.5rem;
   width: 25rem;
   text-align: center;
   display: block;
   margin-bottom: 3rem;
+  box-shadow: 0 0 12px rgba(184, 77, 255, 0.2);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  outline: none;
+}
+
+.guess:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+}
+
+/* hide number input arrows */
+.guess::-webkit-inner-spin-button,
+.guess::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.guess[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .btn {
-  border: none;
-  background-color: #eee;
-  color: #222;
+  border: 2px solid #b84dff;
+  background-color: #6a00cc;
+  color: #e8d5ff;
   font-size: 2rem;
   font-family: inherit;
   padding: 2rem 3rem;
   cursor: pointer;
+  box-shadow: 0 0 12px rgba(106, 0, 204, 0.45);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
 }
 
 .btn:hover {
-  background-color: #ccc;
+  background-color: #8400ff;
+  box-shadow: 0 0 22px rgba(132, 0, 255, 0.65);
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .message {
   margin-bottom: 8rem;
   height: 3rem;
+  color: #b84dff;
+  text-shadow: 0 0 8px rgba(184, 77, 255, 0.4);
 }
 
 .label-score {
   margin-bottom: 2rem;
+}
+
+.score,
+.highscore {
+  color: #00e5ff;
+}
+
+/* =============================================
+   RESPONSIVE — TABLET  (max-width: 900px)
+   ============================================= */
+@media (max-width: 900px) {
+  html {
+    font-size: 52%;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .between {
+    font-size: 1.2rem;
+  }
+
+  .left,
+  .right {
+    width: 42rem;
+  }
+
+  .guess {
+    font-size: 4rem;
+    width: 22rem;
+    padding: 2rem;
+  }
+
+  .btn {
+    font-size: 1.8rem;
+    padding: 1.6rem 2.4rem;
+  }
+
+  .number {
+    font-size: 5rem;
+    width: 13rem;
+    padding: 2.5rem 0;
+  }
+
+  .right {
+    font-size: 1.8rem;
+  }
+
+  .message {
+    margin-bottom: 6rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE — MOBILE  (max-width: 600px)
+   ============================================= */
+@media (max-width: 600px) {
+  html {
+    font-size: 42%;
+  }
+
+  /* Header grows to fit content on small screens */
+  header {
+    height: auto;
+    min-height: 22vh;
+    padding: 6rem 2rem 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    position: static;
+    transform: none;
+    width: 100%;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .between {
+    font-size: 1.1rem;
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .again {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+
+  .number {
+    font-size: 4rem;
+    width: 11rem;
+    padding: 2rem 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    position: absolute;
+  }
+
+  /* Stack left and right vertically */
+  main {
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+    padding: 8rem 2rem 4rem;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+    max-width: 38rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .right {
+    font-size: 1.8rem;
+    text-align: left;
+    padding-left: 2rem;
+  }
+
+  .guess {
+    font-size: 3.6rem;
+    width: 20rem;
+    padding: 1.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    padding: 1.4rem 2rem;
+  }
+
+  .message {
+    margin-bottom: 4rem;
+    height: auto;
+    min-height: 3rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE — SMALL MOBILE  (max-width: 380px)
+   ============================================= */
+@media (max-width: 380px) {
+  html {
+    font-size: 36%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .guess {
+    font-size: 3rem;
+    width: 17rem;
+  }
+
+  .number {
+    font-size: 3.4rem;
+    width: 10rem;
+  }
 }
